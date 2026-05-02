@@ -3,9 +3,9 @@ ASPNET-DK24TTK2-vuphuongthaotrang-weblinhkien
 Giới thiệu
 Thông tin sinh viên
 Họ tên: Vũ Phương Thảo Trang
-MSSV: 
+MSSV: 170124112
 Lớp: DK24TTK2
-Email: 
+Email: trangvpt041292@tvu-onschool.edu.vn
 Website gồm các chức năng cơ bản:
 // Ngày 02/05/2026 thực hiện //
 Hiển thị danh sách sản phẩm
