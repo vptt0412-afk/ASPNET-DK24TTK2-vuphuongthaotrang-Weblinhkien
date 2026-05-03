@@ -10,12 +10,13 @@ namespace WebLinhKien_Trangvpt
         {
             if (!IsPostBack)
             {
-                LoadLoai();      // load filter
-                LoadSanPham();   // load sản phẩm
+                LoadLoai();
+                LoadSanPham();
             }
+
+            CheckLogin();
         }
 
-        // ===== LOAD LOẠI (FILTER) =====
         void LoadLoai()
         {
             ketnoi kn = new ketnoi();
@@ -25,7 +26,6 @@ namespace WebLinhKien_Trangvpt
             rpLoai.DataBind();
         }
 
-        // ===== LOAD SẢN PHẨM =====
         void LoadSanPham()
         {
             ketnoi kn = new ketnoi();
@@ -51,26 +51,39 @@ namespace WebLinhKien_Trangvpt
             dlSanPham.DataBind();
         }
 
-        // ===== SEARCH =====
         protected void btnSearch_Click(object sender, EventArgs e)
         {
             string keyword = txtSearch.Text.Trim();
             string loai = Request.QueryString["loai"];
 
-            string url = "Default.aspx";
+            string url = "Default.aspx?search=" + keyword;
 
-            if (!string.IsNullOrEmpty(keyword) || !string.IsNullOrEmpty(loai))
+            if (!string.IsNullOrEmpty(loai))
             {
-                url += "?";
-
-                if (!string.IsNullOrEmpty(keyword))
-                    url += "search=" + keyword + "&";
-
-                if (!string.IsNullOrEmpty(loai))
-                    url += "loai=" + loai;
+                url += "&loai=" + loai;
             }
 
             Response.Redirect(url);
+        }
+
+        void CheckLogin()
+        {
+            if (Session["user"] == null)
+            {
+                lblUser.Text = "";
+
+                lnkLogin.Visible = true;
+                lnkRegister.Visible = true;
+                lnkLogout.Visible = false;
+            }
+            else
+            {
+                lblUser.Text = "Xin chào: " + Session["user"].ToString();
+
+                lnkLogin.Visible = false;
+                lnkRegister.Visible = false;
+                lnkLogout.Visible = true;
+            }
         }
     }
 }

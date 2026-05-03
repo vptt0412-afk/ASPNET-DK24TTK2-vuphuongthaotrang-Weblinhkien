@@ -8,16 +8,29 @@
     <style>
         body {
             font-family: Arial;
-            background: #f2f2f2;
+            background: #f5f5f5;
             margin: 0;
         }
 
         .topbar {
-            background: #1e3a8a;
+            background: #222;
             color: white;
-            padding: 12px 20px;
-            font-size: 18px;
+            padding: 10px 20px;
+        }
+
+        .topbar-left {
+            float: left;
             font-weight: bold;
+        }
+
+        .topbar-right {
+            float: right;
+        }
+
+        .topbar-right a {
+            color: white;
+            margin-left: 12px;
+            text-decoration: none;
         }
 
         .container {
@@ -44,10 +57,6 @@
             color: #333;
         }
 
-        .filter a:hover {
-            color: #1e3a8a;
-        }
-
         .search-box {
             text-align: center;
             margin-bottom: 15px;
@@ -72,7 +81,6 @@
         .price {
             color: red;
             font-weight: bold;
-            font-size: 14px;
         }
 
         .clear {
@@ -88,9 +96,28 @@
 
     <!-- HEADER -->
     <div class="topbar">
-        💻 Web Linh Kiện
+
+        <div class="topbar-left">
+            💻 Web Linh Kiện
+        </div>
+
+        <div class="topbar-right">
+
+            <asp:Label ID="lblUser" runat="server" />
+
+            <asp:HyperLink ID="lnkLogin" runat="server" NavigateUrl="Login.aspx">Đăng nhập</asp:HyperLink>
+
+            <asp:HyperLink ID="lnkRegister" runat="server" NavigateUrl="Register.aspx">Đăng ký</asp:HyperLink>
+
+            <asp:HyperLink ID="lnkLogout" runat="server" NavigateUrl="Logout.aspx">Đăng xuất</asp:HyperLink>
+
+        </div>
+
+        <div class="clear"></div>
+
     </div>
 
+    <!-- CONTENT -->
     <div class="container">
 
         <div class="title">Danh sách sản phẩm</div>
@@ -115,14 +142,13 @@
             <asp:Button ID="btnSearch" runat="server" Text="Tìm" OnClick="btnSearch_Click" />
         </div>
 
-        <!-- PRODUCT LIST -->
+        <!-- PRODUCT -->
         <asp:DataList ID="dlSanPham" runat="server" RepeatColumns="4">
 
             <ItemTemplate>
 
                 <div class="product">
 
-                    <!-- FIX ẢNH LỖI -->
                     <img src='<%# "image/" + Eval("HinhAnh") %>'
                          onerror="this.src='image/no-image.png'" />
 
@@ -136,11 +162,8 @@
 
                     <p><%# Eval("ThuocTinh") %></p>
 
-                    <!-- CHI TIẾT -->
                     <div style="margin-top:6px;">
-                        <a href='<%# "ChiTiet.aspx?id=" + Eval("MaSP") %>'>
-                            Xem chi tiết
-                        </a>
+                        <a href='<%# "ChiTiet.aspx?id=" + Eval("MaSP") %>'>Chi tiết</a>
                     </div>
 
                 </div>
