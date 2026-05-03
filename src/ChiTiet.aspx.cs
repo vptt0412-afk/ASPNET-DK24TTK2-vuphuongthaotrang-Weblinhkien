@@ -14,12 +14,10 @@ namespace WebLinhKien_Trangvpt
             }
         }
 
-        // ===== LOAD CHI TIẾT =====
         void LoadChiTiet()
         {
             string id = Request.QueryString["id"];
 
-            // không có id → quay về trang chủ
             if (string.IsNullOrEmpty(id))
             {
                 Response.Redirect("Default.aspx");
@@ -27,31 +25,23 @@ namespace WebLinhKien_Trangvpt
             }
 
             ketnoi kn = new ketnoi();
+            DataTable dt = kn.getData("SELECT * FROM SanPham WHERE MaSP=" + id);
 
-            string sql = "SELECT * FROM SanPham WHERE MaSP = " + id;
-
-            DataTable dt = kn.getData(sql);
-
-            // không có dữ liệu → quay về
             if (dt.Rows.Count == 0)
             {
                 Response.Redirect("Default.aspx");
                 return;
             }
 
-            // gán dữ liệu
-            lblTen.Text = dt.Rows[0]["TenSP"].ToString();
-            lblGia.Text = String.Format("{0:N0}", dt.Rows[0]["Gia"]) + " VND";
-            lblLoai.Text = dt.Rows[0]["Loai"].ToString();
-            lblMoTa.Text = dt.Rows[0]["ThuocTinh"].ToString();
+            DataRow row = dt.Rows[0];
 
-            // ảnh (có fallback)
-            string img = dt.Rows[0]["HinhAnh"].ToString();
+            lblTen.Text = row["TenSP"].ToString();
+            lblGia.Text = String.Format("{0:N0}", row["Gia"]) + " VND";
+            lblLoai.Text = row["Loai"].ToString();
+            lblMoTa.Text = row["ThuocTinh"].ToString();
 
-            if (!string.IsNullOrEmpty(img))
-                imgSP.ImageUrl = "image/" + img;
-            else
-                imgSP.ImageUrl = "image/no-image.png";
+            string img = row["HinhAnh"].ToString();
+            imgSP.ImageUrl = string.IsNullOrEmpty(img) ? "image/no-image.png" : "image/" + img;
         }
     }
 }

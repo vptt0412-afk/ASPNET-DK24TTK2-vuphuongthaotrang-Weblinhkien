@@ -8,22 +8,37 @@
     <style>
         body {
             font-family: Arial;
-            background: #f2f2f2;
+            background: #f5f5f5;
             margin: 0;
         }
 
+        /* ===== HEADER GIỐNG DEFAULT ===== */
         .topbar {
-            background: #1e3a8a;
+            background: #222;
             color: white;
-            padding: 12px 20px;
+            padding: 10px 20px;
         }
 
-        .topbar a {
+        .topbar-left {
+            float: left;
+            font-weight: bold;
+        }
+
+        .topbar-right {
+            float: right;
+        }
+
+        .topbar-right a {
             color: white;
-            margin-left: 15px;
+            margin-left: 12px;
             text-decoration: none;
         }
 
+        .clear {
+            clear: both;
+        }
+
+        /* ===== CONTENT ===== */
         .container {
             width: 900px;
             margin: 40px auto;
@@ -34,7 +49,6 @@
             gap: 30px;
             background: white;
             padding: 25px;
-            border-radius: 10px;
         }
 
         .left img {
@@ -55,21 +69,29 @@
             margin-top: 20px;
             display: inline-block;
             text-decoration: none;
-            color: #1e3a8a;
-            font-weight: bold;
+            color: #007bff;
         }
     </style>
 </head>
 
 <body>
 
-<form id="form1" runat="server">
+<form id="form1" runat="server" autocomplete="off">
+    <input type="text" style="display:none">
 
     <!-- HEADER -->
     <div class="topbar">
-        💻 Web Linh Kiện
 
-        <a href="Default.aspx">🏠 Trang chủ</a>
+        <div class="topbar-left">
+            💻 Web Linh Kiện
+        </div>
+
+        <div class="topbar-right">
+            <a href="Default.aspx">Trang chủ</a>
+        </div>
+
+        <div class="clear"></div>
+
     </div>
 
     <div class="container">
@@ -102,7 +124,6 @@
                     <asp:Label ID="lblMoTa" runat="server" />
                 </p>
 
-                <!-- NÚT QUAY LẠI -->
                 <a href="Default.aspx" class="back">← Quay lại</a>
 
             </div>
