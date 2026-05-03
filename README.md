@@ -21,4 +21,5 @@ src/
  ├── Web.config
  ├── image/
  └── DBLinhKien.bak
- 
+ // Ngày 03/05/2026 thực hiện //
+Bổ sung chức năng đăng nhập, đăng ký, đăng xuất cho web
