@@ -30,19 +30,17 @@ Các chức năng đã thực hiện
   - Tạo lớp ketnoi để thực hiện truy vấn database  
   - Sử dụng DataTable để xử lý và hiển thị dữ liệu  
 
-Cấu trúc thư mục:
+Cấu trúc thư mục:  
 
-
-src/
- ├── Default.aspx
- ├── Default.aspx.cs
- ├── ChiTiet.aspx
- ├── ChiTiet.aspx.cs
- ├── ketnoi.cs
- ├── Web.config
- ├── image/
- └── DBLinhKien.bak
-
+src/  
+├── Default.aspx  
+├── Default.aspx.cs  
+├── ChiTiet.aspx  
+├── ChiTiet.aspx.cs  
+├── ketnoi.cs  
+├── Web.config  
+├── image/  
+└── DBLinhKien.bak  
 - Kết quả đạt được:
   - Hiển thị sản phẩm thành công từ cơ sở dữ liệu  
   - Xem được chi tiết từng sản phẩm  
