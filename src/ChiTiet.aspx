@@ -12,99 +12,137 @@
             margin: 0;
         }
 
-        /* ===== HEADER GIỐNG DEFAULT ===== */
+        /* ===== HEADER ===== */
         .topbar {
             background: #222;
             color: white;
-            padding: 10px 20px;
-        }
-
-        .topbar-left {
-            float: left;
-            font-weight: bold;
-        }
-
-        .topbar-right {
-            float: right;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .topbar-right a {
             color: white;
-            margin-left: 12px;
+            margin-left: 15px;
             text-decoration: none;
         }
 
-        .clear {
-            clear: both;
+        .topbar-right a:hover {
+            color: #00bfff;
         }
 
-        /* ===== CONTENT ===== */
+        .cart-badge {
+            background: red;
+            color: white;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 12px;
+            margin-left: 3px;
+        }
+
+        /* ===== CONTAINER ===== */
         .container {
-            width: 900px;
+            width: 1000px;
             margin: 40px auto;
         }
 
         .detail {
             display: flex;
-            gap: 30px;
+            gap: 40px;
             background: white;
-            padding: 25px;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #ccc;
         }
 
+        /* LEFT */
         .left img {
-            width: 250px;
+            width: 300px;
+            border-radius: 10px;
         }
 
+        /* RIGHT */
         .right {
             flex: 1;
         }
 
+        .right h2 {
+            margin-top: 0;
+        }
+
         .price {
             color: red;
-            font-size: 22px;
+            font-size: 24px;
             font-weight: bold;
         }
 
-        .back {
-            margin-top: 20px;
-            display: inline-block;
-            text-decoration: none;
-            color: #007bff;
+        .qty-box {
+            margin-top: 15px;
         }
+
+        .qty-box input {
+            width: 60px;
+            padding: 5px;
+            text-align: center;
+        }
+
+        /* BUTTON */
+        .btn-add {
+            margin-top: 20px;
+            padding: 12px 20px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .btn-add:hover {
+            background: #218838;
+        }
+
     </style>
 </head>
 
 <body>
 
-<form id="form1" runat="server" autocomplete="off">
-    <input type="text" style="display:none">
+<form id="form1" runat="server">
 
-    <!-- HEADER -->
+   
     <div class="topbar">
 
-        <div class="topbar-left">
-            💻 Web Linh Kiện
-        </div>
+        <div>💻 Web Linh Kiện</div>
 
         <div class="topbar-right">
-            <a href="Default.aspx">Trang chủ</a>
-        </div>
 
-        <div class="clear"></div>
+            <asp:Label ID="lblUser" runat="server"></asp:Label>
+
+            <asp:HyperLink ID="lnkHome" runat="server" NavigateUrl="Default.aspx">
+                🏠 Trang chủ
+            </asp:HyperLink>
+
+            <asp:HyperLink ID="lnkCart" runat="server" NavigateUrl="GioHang.aspx">
+                🛒 Giỏ hàng
+                <asp:Label ID="lblCartCount" runat="server" CssClass="cart-badge"></asp:Label>
+            </asp:HyperLink>
+
+        </div>
 
     </div>
 
+  
     <div class="container">
 
         <div class="detail">
 
-            <!-- ẢNH -->
+            <!-- LEFT -->
             <div class="left">
-                <asp:Image ID="imgSP" runat="server" Width="250"
-                    ImageUrl="image/no-image.png" />
+                <asp:Image ID="imgSP" runat="server" />
             </div>
 
-            <!-- THÔNG TIN -->
+            <!-- RIGHT -->
             <div class="right">
 
                 <h2>
@@ -112,19 +150,21 @@
                 </h2>
 
                 <p class="price">
-                    <asp:Label ID="lblGia" runat="server" />
+                    <asp:Label ID="lblGia" runat="server" /> VND
                 </p>
 
-                <p>
-                    <b>Loại:</b>
-                    <asp:Label ID="lblLoai" runat="server" />
-                </p>
+                <p><b>Loại:</b> <asp:Label ID="lblLoai" runat="server" /></p>
+                <p><asp:Label ID="lblThuocTinh" runat="server" /></p>
 
-                <p>
-                    <asp:Label ID="lblMoTa" runat="server" />
-                </p>
+                <div class="qty-box">
+                    Số lượng:
+                    <asp:TextBox ID="txtSL" runat="server" Text="1"></asp:TextBox>
+                </div>
 
-                <a href="Default.aspx" class="back">← Quay lại</a>
+                <asp:Button ID="btnAdd" runat="server"
+                    Text="🛒 Thêm vào giỏ"
+                    CssClass="btn-add"
+                    OnClick="btnAdd_Click" />
 
             </div>
 

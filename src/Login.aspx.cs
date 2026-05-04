@@ -39,12 +39,11 @@ namespace WebLinhKien_Trangvpt
 
                     if (reader.Read())
                     {
-                        // ✅ CHUẨN
+                       
                         Session["user"] = reader["Username"].ToString();
                         Session["role"] = reader["Role"].ToString();
 
-                        // ❌ KHÔNG CẦN login = true
-                        // Session["login"] = true;
+                       
 
                         Response.Redirect("Default.aspx");
                     }

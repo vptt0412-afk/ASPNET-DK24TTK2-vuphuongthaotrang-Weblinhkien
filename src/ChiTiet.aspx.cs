@@ -1,47 +1,143 @@
 ﻿using System;
-using System.Data;
-using System.Web.UI;
+using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Configuration;
+using System.Globalization;
 
 namespace WebLinhKien_Trangvpt
 {
-    public partial class ChiTiet : Page
+    public partial class ChiTiet : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                LoadChiTiet();
+                LoadSP();
+            }
+
+            LoadHeader();
+        }
+
+        //  LOAD SẢN PHẨM
+        void LoadSP()
+        {
+            int id;
+
+
+            if (!int.TryParse(Request.QueryString["id"], out id))
+                return;
+
+            string connStr = ConfigurationManager.ConnectionStrings["conn"].ConnectionString;
+
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                string sql = "SELECT * FROM SanPham WHERE MaSP=@id";
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@id", id);
+
+                conn.Open();
+                SqlDataReader r = cmd.ExecuteReader();
+
+                if (r.Read())
+                {
+                    lblTen.Text = r["TenSP"].ToString();
+
+
+                    int gia = Convert.ToInt32(r["Gia"]);
+                    lblGia.Text = String.Format(new CultureInfo("vi-VN"), "{0:N0}", gia) + " VND";
+
+                    lblLoai.Text = r["Loai"].ToString();
+                    lblThuocTinh.Text = r["ThuocTinh"].ToString();
+
+
+                    imgSP.ImageUrl = "image/" + r["HinhAnh"].ToString();
+
+
+                    ViewState["HinhAnh"] = r["HinhAnh"].ToString();
+                    ViewState["Gia"] = gia;
+                }
+
+                r.Close();
             }
         }
 
-        void LoadChiTiet()
+        void LoadHeader()
         {
-            string id = Request.QueryString["id"];
-
-            if (string.IsNullOrEmpty(id))
+            if (Session["user"] != null)
             {
-                Response.Redirect("Default.aspx");
-                return;
+                lblUser.Text = "Xin chào: " + Session["user"].ToString();
+            }
+            else
+            {
+                lblUser.Text = "";
             }
 
-            ketnoi kn = new ketnoi();
-            DataTable dt = kn.getData("SELECT * FROM SanPham WHERE MaSP=" + id);
-
-            if (dt.Rows.Count == 0)
+            if (Session["cart"] != null)
             {
-                Response.Redirect("Default.aspx");
-                return;
+                List<CartItem> cart = (List<CartItem>)Session["cart"];
+
+                int count = 0;
+                foreach (CartItem item in cart)
+                {
+                    count += item.SoLuong;
+                }
+
+                lblCartCount.Text = count.ToString();
+            }
+            else
+            {
+                lblCartCount.Text = "0";
+            }
+        }
+
+        protected void btnAdd_Click(object sender, EventArgs e)
+        {
+            int id = Convert.ToInt32(Request.QueryString["id"]);
+            int sl;
+
+            
+            if (!int.TryParse(txtSL.Text, out sl) || sl <= 0)
+                sl = 1;
+
+            List<CartItem> cart;
+
+            if (Session["cart"] == null)
+                cart = new List<CartItem>();
+            else
+                cart = (List<CartItem>)Session["cart"];
+
+            bool found = false;
+
+            foreach (CartItem item in cart)
+            {
+                if (item.MaSP == id)
+                {
+                    item.SoLuong += sl;
+                    found = true;
+                    break;
+                }
             }
 
-            DataRow row = dt.Rows[0];
+            if (!found)
+            {
+                cart.Add(new CartItem
+                {
+                    MaSP = id,
+                    TenSP = lblTen.Text,
 
-            lblTen.Text = row["TenSP"].ToString();
-            lblGia.Text = String.Format("{0:N0}", row["Gia"]) + " VND";
-            lblLoai.Text = row["Loai"].ToString();
-            lblMoTa.Text = row["ThuocTinh"].ToString();
 
-            string img = row["HinhAnh"].ToString();
-            imgSP.ImageUrl = string.IsNullOrEmpty(img) ? "image/no-image.png" : "image/" + img;
+                    Gia = (int)ViewState["Gia"],
+
+                    SoLuong = sl,
+
+                    HinhAnh = ViewState["HinhAnh"].ToString()
+                });
+            }
+
+            Session["cart"] = cart;
+
+            
+            LoadHeader();
         }
     }
 }

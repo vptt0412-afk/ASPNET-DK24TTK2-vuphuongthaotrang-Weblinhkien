@@ -11,7 +11,7 @@ namespace WebLinhKien_Trangvpt
             string username = txtUser.Text.Trim();
             string password = txtPass.Text.Trim();
 
-            // 🔥 CHECK RỖNG
+            //  CHECK RỖNG
             if (username == "" || password == "")
             {
                 lblMsg.ForeColor = System.Drawing.Color.Red;
@@ -25,7 +25,7 @@ namespace WebLinhKien_Trangvpt
             {
                 conn.Open();
 
-                // 🔥 CHECK TRÙNG USER
+                //  CHECK TRÙNG USER
                 string check = "SELECT COUNT(*) FROM Users WHERE Username=@u";
                 using (SqlCommand cmdCheck = new SqlCommand(check, conn))
                 {
@@ -41,7 +41,7 @@ namespace WebLinhKien_Trangvpt
                     }
                 }
 
-                // 🔥 INSERT USER
+                //  INSERT USER
                 string sql = "INSERT INTO Users(Username, Password, Role) VALUES(@u, @p, 'user')";
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
@@ -51,11 +51,11 @@ namespace WebLinhKien_Trangvpt
                     cmd.ExecuteNonQuery();
                 }
 
-                // 🔥 AUTO LOGIN (QUAN TRỌNG)
+                // AUTO LOGIN (QUAN TRỌNG)
                 Session["user"] = username;   // ✅ sửa chỗ này
                 Session["role"] = "user";
 
-                // 🔥 CHUYỂN VỀ TRANG CHỦ
+                // CHUYỂN VỀ TRANG CHỦ
                 Response.Redirect("Default.aspx");
             }
         }
