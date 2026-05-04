@@ -1,13 +1,17 @@
 Web linh kiện máy tính  
-ASPNET-DK24TTK2-vuphuongthaotrang-weblinhkien   
+ASPNET-DK24TTK2-vuphuongthaotrang-weblinhkien  
+
 Giới thiệu  
+
 Thông tin sinh viên  
 - Họ tên: Vũ Phương Thảo Trang  
 - MSSV: 170124112  
-- Lớp:*DK24TTK2  
-- Email: trangvpt041292@tvu-onschool.edu.vn
-  // Ngày 02/05/2026 thực hiện // 
-Các chức năng đã thực hiện
+- Lớp:DK24TTK2  
+- Email: trangvpt041292@tvu-onschool.edu.vn  
+
+// Ngày 02/05/2026 thực hiện //  
+
+Các chức năng đã thực hiện  
 
 Xây dựng trang danh sách sản phẩm (Default):
 Hiển thị dữ liệu sản phẩm từ database
