@@ -34,15 +34,14 @@ Cấu trúc thư mục:
 
 
 src/
-├── Default.aspx
-├── Default.aspx.cs
-├── ChiTiet.aspx
-├── ChiTiet.aspx.cs
-├── ketnoi.cs
-├── Web.config
-├── image/
-└── DBLinhKien.bak
-
+ ├── Default.aspx
+ ├── Default.aspx.cs
+ ├── ChiTiet.aspx
+ ├── ChiTiet.aspx.cs
+ ├── ketnoi.cs
+ ├── Web.config
+ ├── image/
+ └── DBLinhKien.bak
 
 - Kết quả đạt được:
   - Hiển thị sản phẩm thành công từ cơ sở dữ liệu  
