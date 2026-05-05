@@ -105,8 +105,38 @@ Các chức năng đã thực hiện
     - Giỏ hàng  
     - Thanh toán  
 
-- Hệ thống hoạt động ổn định, dữ liệu được lưu trữ và xử lý đúng  
+// Ngày 05/05/2026 thực hiện // 
+Các chức năng đã thực hiện
 
-- Ghi chú:
-  - Chưa thực hiện chức năng quản lý đơn hàng  
-  - Dự án sẵn sàng viết báo cáo file .doc và chuẩn bị demo 
+Xây dựng chức năng quản lý đơn hàng (QLDonHang):
+Hiển thị danh sách đơn hàng từ database
+Cho phép admin xem thông tin khách hàng (Tên, SĐT, Địa chỉ, Email)
+Hiển thị chi tiết các sản phẩm trong từng đơn hàng
+
+Phân quyền truy cập:
+Chỉ tài khoản có role "admin" mới được truy cập trang quản lý đơn hàng
+
+Hoàn thiện luồng hoạt động của hệ thống:
+Người dùng:
+Xem sản phẩm → xem chi tiết → thêm vào giỏ hàng → thanh toán
+
+Hệ thống:
+Lưu thông tin đơn hàng vào database
+Lưu danh sách sản phẩm trong đơn hàng
+
+Quản trị viên:
+Đăng nhập → quản lý sản phẩm → xem đơn hàng
+
+Kết quả đạt được:
+Hoàn thiện đầy đủ chức năng của website bán hàng:
+Đăng nhập / đăng ký
+Quản lý sản phẩm
+Giỏ hàng
+Thanh toán
+Quản lý đơn hàng
+
+Hệ thống hoạt động ổn định, dữ liệu được xử lý và lưu trữ chính xác
+
+Ghi chú:
+Hoàn thành các chức năng chính của đồ án
+Sẵn sàng viết báo cáo tổng kết
