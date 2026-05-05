@@ -23,7 +23,7 @@ namespace WebLinhKien_Trangvpt
         {
             int id;
 
-
+          
             if (!int.TryParse(Request.QueryString["id"], out id))
                 return;
 
@@ -42,17 +42,17 @@ namespace WebLinhKien_Trangvpt
                 {
                     lblTen.Text = r["TenSP"].ToString();
 
-
+                    
                     int gia = Convert.ToInt32(r["Gia"]);
                     lblGia.Text = String.Format(new CultureInfo("vi-VN"), "{0:N0}", gia) + " VND";
 
                     lblLoai.Text = r["Loai"].ToString();
                     lblThuocTinh.Text = r["ThuocTinh"].ToString();
 
-
+                   
                     imgSP.ImageUrl = "image/" + r["HinhAnh"].ToString();
 
-
+              
                     ViewState["HinhAnh"] = r["HinhAnh"].ToString();
                     ViewState["Gia"] = gia;
                 }
@@ -95,7 +95,7 @@ namespace WebLinhKien_Trangvpt
             int id = Convert.ToInt32(Request.QueryString["id"]);
             int sl;
 
-            
+            //  
             if (!int.TryParse(txtSL.Text, out sl) || sl <= 0)
                 sl = 1;
 
@@ -125,7 +125,7 @@ namespace WebLinhKien_Trangvpt
                     MaSP = id,
                     TenSP = lblTen.Text,
 
-
+                    
                     Gia = (int)ViewState["Gia"],
 
                     SoLuong = sl,

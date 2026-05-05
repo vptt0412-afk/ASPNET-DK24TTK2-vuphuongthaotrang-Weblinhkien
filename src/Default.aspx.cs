@@ -12,8 +12,8 @@ namespace WebLinhKien_Trangvpt
         {
             if (!IsPostBack)
             {
-                LoadLoai();
-                LoadSanPham();
+                LoadLoai();       // filter động
+                LoadSanPham();    // load sản phẩm
             }
 
             CheckLogin();
@@ -72,7 +72,7 @@ namespace WebLinhKien_Trangvpt
             Response.Redirect(url);
         }
 
-        // ===== LOGIN UI =====
+        // ===== LOGIN UI + PHÂN QUYỀN =====
         void CheckLogin()
         {
             if (Session["user"] == null)
@@ -82,8 +82,10 @@ namespace WebLinhKien_Trangvpt
                 lnkLogin.Visible = true;
                 lnkRegister.Visible = true;
                 lnkLogout.Visible = false;
-
                 lnkAdmin.Visible = false;
+
+               
+                lnkOrder.Visible = false;
             }
             else
             {
@@ -93,11 +95,17 @@ namespace WebLinhKien_Trangvpt
                 lnkRegister.Visible = false;
                 lnkLogout.Visible = true;
 
-                
+                //  CHECK ROLE
                 if (Session["role"] != null && Session["role"].ToString() == "admin")
+                {
                     lnkAdmin.Visible = true;
+                    lnkOrder.Visible = true;   // 🔥 CHỈ ADMIN THẤY
+                }
                 else
+                {
                     lnkAdmin.Visible = false;
+                    lnkOrder.Visible = false;  // 🔥 USER KHÔNG THẤY
+                }
             }
         }
 
@@ -113,6 +121,7 @@ namespace WebLinhKien_Trangvpt
             List<CartItem> cart = (List<CartItem>)Session["cart"];
 
             int total = 0;
+
             foreach (CartItem item in cart)
             {
                 total += item.SoLuong;

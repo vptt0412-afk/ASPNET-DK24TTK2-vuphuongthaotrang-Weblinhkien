@@ -13,7 +13,7 @@ namespace WebLinhKien_Trangvpt
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //  CHẶN USER KHÔNG PHẢI ADMIN
+            // CHẶN USER KHÔNG PHẢI ADMIN
             if (Session["role"] == null || Session["role"].ToString() != "admin")
             {
                 Response.Redirect("Default.aspx");
@@ -62,7 +62,7 @@ namespace WebLinhKien_Trangvpt
 
             string tenFile = "";
 
-            // upload ảnh
+            
             if (fileHinh.HasFile)
             {
                 tenFile = Guid.NewGuid().ToString() + "_" + fileHinh.FileName;

@@ -6,10 +6,10 @@ namespace WebLinhKien_Trangvpt
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Session.Clear();   // xoá session
+            Session.Clear();   
             Session.Abandon();
 
-            Response.Redirect("Default.aspx"); // về trang chủ
+            Response.Redirect("Default.aspx");
         }
     }
 }

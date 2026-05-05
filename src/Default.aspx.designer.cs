@@ -69,6 +69,15 @@ namespace WebLinhKien_Trangvpt
         protected global::System.Web.UI.WebControls.HyperLink lnkAdmin;
 
         /// <summary>
+        /// lnkOrder control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink lnkOrder;
+
+        /// <summary>
         /// lnkCart control.
         /// </summary>
         /// <remarks>

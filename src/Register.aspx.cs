@@ -51,11 +51,11 @@ namespace WebLinhKien_Trangvpt
                     cmd.ExecuteNonQuery();
                 }
 
-                // AUTO LOGIN (QUAN TRỌNG)
+                //  AUTO LOGIN
                 Session["user"] = username;   // ✅ sửa chỗ này
                 Session["role"] = "user";
 
-                // CHUYỂN VỀ TRANG CHỦ
+                
                 Response.Redirect("Default.aspx");
             }
         }

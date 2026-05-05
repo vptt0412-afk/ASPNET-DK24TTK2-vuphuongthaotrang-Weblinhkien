@@ -43,7 +43,7 @@ namespace WebLinhKien_Trangvpt
                         Session["user"] = reader["Username"].ToString();
                         Session["role"] = reader["Role"].ToString();
 
-                       
+                      
 
                         Response.Redirect("Default.aspx");
                     }

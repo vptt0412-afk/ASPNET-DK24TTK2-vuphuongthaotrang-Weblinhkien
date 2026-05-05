@@ -12,10 +12,10 @@ namespace WebLinhKien_Trangvpt
 
         public int SoLuong { get; set; }
 
-     
+        // THÊM HÌNH 
         public string HinhAnh { get; set; }
 
-        
+        // TỰ ĐỘNG TÍNH
         public int ThanhTien
         {
             get { return Gia * SoLuong; }

@@ -39,14 +39,14 @@ namespace WebLinhKien_Trangvpt
                 cmd.ExecuteNonQuery();
             }
 
-            // XOÁ GIỎ HÀNG
+            
             Session["cart"] = null;
 
-            // THÔNG BÁO
+            
             lblMsg.ForeColor = System.Drawing.Color.Green;
             lblMsg.Text = "🎉 Thanh toán thành công!";
 
-            //  TỰ ĐỘNG VỀ TRANG CHỦ
+            
             Response.AddHeader("REFRESH", "2;URL=Default.aspx");
         }
     }
