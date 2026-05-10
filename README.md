@@ -141,4 +141,8 @@ Các chức năng đã thực hiện
 
 - Ghi chú:
   - Đồ án đã hoàn thiện các chức năng chính  
-  - Sẵn sàng viết báo cáo tổng kết  
+  - Sẵn sàng viết báo cáo tổng kết
+ 
+    // Ngày 10/05/2026 thực hiện //
+    - Viết báo cáo
+    - Nộp báo cáo và hoàn thành đồ án
